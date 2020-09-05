@@ -1,9 +1,36 @@
 (function() {
+  console.log('httpHandler.js is working')
 
   const serverUrl = 'http://127.0.0.1:3000';
 
   //
   // TODO: build the swim command fetcher here
+  // ajax get request
+
+const ajaxGetRequest = (callback) => {
+  $.ajax({
+    type: 'GET',
+    url: serverUrl,
+    //cache: false,
+    // contentType: false,
+    // processData: false,
+    success: (data) => {
+      // reload the page
+      console.log('is it working?');
+      var dataString = data.toString();
+      callback(dataString);
+      // window.location = window.location.href;
+    },
+   complete: () => {
+     ajaxGetRequest(SwimTeam.move);
+   }
+  });
+};
+
+
+
+// ajaxGetRequest(SwimTeam.move);
+
   //
 
   /////////////////////////////////////////////////////////////////////
@@ -11,13 +38,13 @@
   // Note: remember to fix the URL below.
   /////////////////////////////////////////////////////////////////////
 
-  const ajaxFileUplaod = (file) => {
+  const ajaxFileUpload = (file) => {
     var formData = new FormData();
     formData.append('file', file);
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
@@ -43,7 +70,7 @@
       return;
     }
 
-    ajaxFileUplaod(file);
+    ajaxFileUpload(file);
   });
 
 })();
