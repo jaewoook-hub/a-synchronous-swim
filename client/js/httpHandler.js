@@ -16,7 +16,7 @@ const ajaxGetRequest = (callback) => {
     // processData: false,
     success: (data) => {
       // reload the page
-      console.log('is it working?');
+
       var dataString = data.toString();
       callback(dataString);
       // window.location = window.location.href;
@@ -27,8 +27,19 @@ const ajaxGetRequest = (callback) => {
   });
 };
 
+const ajaxGetBackgroundRequest = () => {
+  $.ajax({
+    type: 'GET',
+    url: 'http://127.0.0.1:3000/background.jpg',
+    //data: 'background.jpg',
+    success: (data) => {
+      // console.log('this is the data: ',data);
 
+    }
+  });
+};
 
+ajaxGetBackgroundRequest();
 // ajaxGetRequest(SwimTeam.move);
 
   //
@@ -44,7 +55,7 @@ const ajaxGetRequest = (callback) => {
     $.ajax({
       type: 'POST',
       data: formData,
-      url: serverUrl,
+      url: '/background.jpg',
       cache: false,
       contentType: false,
       processData: false,
